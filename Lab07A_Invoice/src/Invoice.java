@@ -11,10 +11,14 @@ public class Invoice {
         this.lineItems = lineItems;
     }
 
-    public Invoice(String customerAddress, double amountDue) {
+    public Invoice(String customerAddress, ArrayList<LineItem> lineItems) {
         this.customerAddress = customerAddress;
-        this.amountDue = amountDue;
-        this.lineItems = new ArrayList<LineItem>();
+        this.lineItems = lineItems;
+        double tempAmountDue = 0;
+        for (LineItem item : lineItems) {
+            tempAmountDue += item.getTotalPrice();
+        }
+        this.amountDue = tempAmountDue;
     }
 
     public String getCustomerAddress() {
